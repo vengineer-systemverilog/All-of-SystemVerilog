@@ -4,13 +4,13 @@
 
 このrepoの目的は、SystemVerilogのコードをガンガン溜め込むことです。
 非常に簡単な論理回路(and, or, nand, nor, not, Flipflopなど)やメモリから状態遷移マシン、Bus Functional
-ModelなどSystemVerilogで書かれていれば何でもOKです。設計用の記述だけでなく、検証用こ記述でもOKです。
+ModelなどSystemVerilogで書かれていれば何でもOKです。設計用の記述だけでなく、検証用の記述でもOKです。
 
 ## SystemVerilog の書籍
 
 現在発行されているSystemVerilogに関する書籍
 
-- [SystemVerilog入門](https://www.kyoritsu-pub.co.jp/bookdetail/9784320124639)、入門書というか LRM (Language Reference Manual)代わり１
+- [SystemVerilog入門](https://www.kyoritsu-pub.co.jp/bookdetail/9784320124639)、入門書というか LRM (Language Reference Manual)代わり
 - [SystemVerilogによる検証の基礎](https://www.morikita.co.jp/books/book/3427)、上記「SystemVerilog入門」の著者によるSystemVerilogの検証に関するもの
 - [SystemVerilog設計スタートアップ](https://www.cqpub.co.jp/hanbai/books/36/36191.htm)、2008年5月15日に出版されたCQ出版が過去発行していたDesign Wave Managineに掲載された記事を項目ごとにまとめたもの
 
