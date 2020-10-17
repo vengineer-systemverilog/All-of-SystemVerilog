@@ -22,7 +22,7 @@ ModelなどSystemVerilogで書かれていれば何でもOKです。設計用の
 
 ## いろいろなモデル
 
-* (Models)[Models.md]にいろいろなモデルへのリンクがあります
+* [Models](Models.md)にいろいろなモデルへのリンクがあります
 
 ## SystemVerilogが利用できるシミュレータ 
 ### オープンソースソフトウェア
