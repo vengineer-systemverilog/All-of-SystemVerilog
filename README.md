@@ -10,12 +10,12 @@ ModelなどSystemVerilogで書かれていれば何でもOKです。設計用の
 
 # SystemVerilogが利用できるシミュレータ 
 ## オープンソースソフトウェア
-- iverilog
-- verilator
+- [iverilog](http://iverilog.icarus.com/)
+- [verilator](https://www.veripool.org/wiki/verilator)
 
 ## FPGA開発環境で利用できるシミュレータ
-- Xilinx Simulator
-- Intel FPGA用ModelSim
+- [Xilinx Simulator](https://japan.xilinx.com/products/design-tools/vivado/simulator.html)
+- [Intel FPGA用ModelSim](https://www.intel.co.jp/content/www/jp/ja/software/programmable/quartus-prime/model-sim.html)
 
 ## お高いシミュレータ
 - Synopsys VCS
