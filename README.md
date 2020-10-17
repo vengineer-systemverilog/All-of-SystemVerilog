@@ -9,11 +9,11 @@
 ModelなどSystemVerilogで書かれていれば何でもOKです。設計用の記述だけでなく、検証用こ記述でもOKです。
 
 # SystemVerilogが利用できるシミュレータ 
-# オープンソースソフトウェア
+## オープンソースソフトウェア
 - iverilog
 - verilator
 
-# FPGA開発環境で利用できるシミュレータ
+## FPGA開発環境で利用できるシミュレータ
 - Xilinx Simulator
 - Intel FPGA用ModelSim
 
