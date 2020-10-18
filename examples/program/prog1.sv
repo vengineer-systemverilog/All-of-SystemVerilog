@@ -40,6 +40,10 @@ program prog1
     $finish(2);
   end
 
+  final begin
+    $display("finish final");
+  end
+
 endprogram : prog1
 
 module assign_and
