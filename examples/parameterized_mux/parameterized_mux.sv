@@ -1,3 +1,8 @@
+//  データの型、要素数、実装方法をパラメータ化した MUX 記述
+//  動作確認したシミュレータ
+//    * Cadence Xcelium
+//    * Mentor Questa
+//    * Synopsys VCS
 interface parameterized_mux #(
   parameter type  DATA    = logic,
   parameter int   ENTRIES = 2,
