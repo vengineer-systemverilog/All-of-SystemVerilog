@@ -27,12 +27,19 @@ ModelなどSystemVerilogで書かれていれば何でもOKです。設計用の
 ## SystemVerilogが利用できるシミュレータ 
 ### オープンソースソフトウェア
 * [iverilog](http://iverilog.icarus.com/)
-* [verilator](https://www.veripool.org/wiki/verilator)
+  * iverilogは、Verilog HDLのシミュレータであるが、オプションを付けると SystemVerilog の一部の機能が使えるようです
   * -g2012 というオプションを付けると、SystemVerilog 2012 をサポートするらしい
+* [verilator](https://www.veripool.org/wiki/verilator)
+  * verilator は、initial文をサポートしていません。その代わりに、C/C++/SystemCを使ってテストベンチ側を作ることができます
 
 ### FPGA開発環境で利用できるシミュレータ
 * [Xilinx Simulator](https://japan.xilinx.com/products/design-tools/vivado/simulator.html)
+  * SystemVerilogの多くの機能をサポートしている(UVMもサポートしている)
+  * DPI (Direct Programming Interface)は、export task をサポートしていないので C 側から SystemVerilog 側の task が呼べないのが辛いです
 * [Intel FPGA用ModelSim](https://www.intel.co.jp/content/www/jp/ja/software/programmable/quartus-prime/model-sim.html)
+  * Mentor Graphics の ModelSim なので、Verilog HDL/VHDL/SystemVerilog をサポートしています
+  * 無償バージョンではHDLの行数が制限や実行速度がかなり遅くなっています
+  * Linux版は64ビットバージョンではなく、32ビットバージョンなのでLinux 側に32ビットのパッケージをインストールする必要があります
 
 ### お高いシミュレータ
 * Synopsys VCS
