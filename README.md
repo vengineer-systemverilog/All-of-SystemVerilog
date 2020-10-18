@@ -18,7 +18,7 @@ ModelなどSystemVerilogで書かれていれば何でもOKです。設計用の
 
 * [QiitaのSystemVerilog関連](https://qiita.com/search?q=SystemVerilog)
 * [All of SystemVerilog](https://sites.google.com/site/allofsystemverilog/)、@Vengineer が大昔いろいろと書いたもの
-  * 半導体ネットで連載しました無償ツールで実践する「ハード・ソフト協調検証」(全8回)　(2009.12.6 - 2010.1.29)もあります
+  * 半導体ネットで連載しました[無償ツールで実践する「ハード・ソフト協調検証」(全8回)　(2009.12.6 - 2010.1.29)](https://sites.google.com/site/allofsystemverilog/Home/dpi-c)もあります
 
 ## いろいろなモデル
 
