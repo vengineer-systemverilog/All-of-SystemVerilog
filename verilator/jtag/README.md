@@ -1,7 +1,7 @@
 
 # Verilator + JTAG C model
 
-PULP-Platform内の[JTAG DPI Module][(https://github.com/pulp-platform/jtag_dpi)は、SystemVerilog DPIを使って、ソフトウェアとソケット通信をすることで、JTAGの通信ができるものです。
+PULP-Platform内の[JTAG DPI Module](https://github.com/pulp-platform/jtag_dpi)は、SystemVerilog DPIを使って、ソフトウェアとソケット通信をすることで、JTAGの通信ができるものです。
 
 Verilatorは、SystemVerilog DPIのimportはサポートしているものの、exportをサポートしていないのでこのままでは使えません。
 そこで、C側のコード(jtag_dpi.c)をちょこっと変更し、Verilatorでも使えるようにしました。
