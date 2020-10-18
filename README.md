@@ -43,7 +43,7 @@ ModelなどSystemVerilogで書かれていれば何でもOKです。設計用の
 
 ### お高いシミュレータ
 * Synopsys VCS
-* Cadence ISU
+* Cadence ISU/Xcelium
 * Mentor Graphics Questa
 * Aldec Riviera-PRO
 
