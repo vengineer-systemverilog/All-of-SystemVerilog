@@ -20,7 +20,7 @@ module simple_logic3;
              $time, a, b, c_and, c_or, c_nand, c_nor, c_xor, c_xnor, a_not);
 
     a <= 0;
-    b <= 1;
+    b <= 0;
     #10;
     a <= 1;
     #10;

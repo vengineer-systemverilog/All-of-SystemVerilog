@@ -1,11 +1,11 @@
-// $ iverilog -g2012 simple_logic2.sv
+// $ iverilog -g2012 simple_logic5.sv
 // $ ./a.out
 //
-module simple_logic2;
+module simple_logic5;
 
   logic a, b, c_and, c_or, c_nand, c_nor, c_xor, c_xnor, a_not;
 
-  always @(a or b) begin 
+  always @(a, b) begin 
     c_and  = a & b;
     c_or   = a | b;
     c_nand = ~(a & b);
@@ -20,7 +20,7 @@ module simple_logic2;
              $time, a, b, c_and, c_or, c_nand, c_nor, c_xor, c_xnor, a_not);
 
     a <= 0;
-    b <= 1;
+    b <= 0;
     #10;
     a <= 1;
     #10;
@@ -32,4 +32,4 @@ module simple_logic2;
     $finish(2);
   end
 
-endmodule : simple_logic2
+endmodule : simple_logic5
