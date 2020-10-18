@@ -1,4 +1,7 @@
-module simple_logic;
+// $ iverilog -g2012 simple_logic1.sv
+// $ ./a.out
+//
+module simple_logic1;
 
   logic a, b, c_and, c_or, c_nand, c_nor, c_xor, c_xnor, a_not;
 
@@ -27,4 +30,4 @@ module simple_logic;
     $finish(2);
   end
 
-endmodule : simple_logic
+endmodule : simple_logic1
