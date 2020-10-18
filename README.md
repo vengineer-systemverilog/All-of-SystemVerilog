@@ -28,6 +28,7 @@ ModelなどSystemVerilogで書かれていれば何でもOKです。設計用の
 ### オープンソースソフトウェア
 * [iverilog](http://iverilog.icarus.com/)
 * [verilator](https://www.veripool.org/wiki/verilator)
+  * -g2012 というオプションを付けると、SystemVerilog 2012 をサポートするらしい
 
 ### FPGA開発環境で利用できるシミュレータ
 * [Xilinx Simulator](https://japan.xilinx.com/products/design-tools/vivado/simulator.html)
