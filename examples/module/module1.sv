@@ -5,13 +5,14 @@
 module tb;
 
   reg  a, b;
-  wire c;
+  wire c0, c1;
 
-  test_module1 u0( a, b, c );
+  test_module1 u0( a, b, c0 );
+  test_module1 u1( .a(a), .b(b), .c(c1) );
 
   initial begin
-    $monitor("%t : a(%b), b(%b) => c(%b)", 
-             $time, a, b, c);
+    $monitor("%t : a(%b), b(%b) => c0(%b), c1(%b)", 
+             $time, a, b, c0, c1);
 
     a <= 0;
     b <= 0;
@@ -29,10 +30,11 @@ module tb;
 endmodule : tb
 
 module test_module1(
-  input  wire a,
-  input  wire b,
-  output wire c
+  a, b, c
 );
+  input  wire a;
+  input  wire b;
+  output wire c;
 
   assign c = a & b;
 
