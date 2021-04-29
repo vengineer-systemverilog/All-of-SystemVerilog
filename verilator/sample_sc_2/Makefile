@@ -50,7 +50,7 @@ VERILATOR_FLAGS += -Wall
 #VERILATOR_FLAGS += --gdbbt
 
 # Input files for Verilator
-VERILATOR_INPUT = ../common/top.v sc_main.cpp
+VERILATOR_INPUT = top.v sc_main.cpp
 
 # Check if SC exists via a verilator call (empty if not)
 SYSTEMC_EXISTS := $(shell $(VERILATOR) --getenv SYSTEMC_INCLUDE)
