@@ -18,23 +18,20 @@ module top
 
    output logic [7:0]  out_data,
    input  logic        load,
+   input  logic [7:0]  inc,
    input  logic [7:0]  in_data
    );
-
-   import "DPI-C" function void sc_stop_for_hdl();
 
    always_ff @(posedge clk) begin
       if(reset_l == 1'b0)
          out_data <= 8'h00;
       else if(load) begin
+         $display("%t : %m, in_data=%h", $time, in_data);
          out_data <= in_data;
       end 
       else begin
-         out_data <= out_data + 1'b1;
-      end
-      if(out_data == 8'hf0) begin
-	 $display("sc_stop_for_hdl at %m");
-	 sc_stop_for_hdl();
+         $display("%t : %m, out_data=%h", $time, out_data);
+         out_data <= out_data + inc;
       end
    end
 

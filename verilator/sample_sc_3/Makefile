@@ -39,9 +39,9 @@ VERILATOR_FLAGS += -Os -x-assign 0
 # Warn abount lint issues; may not want this on less solid designs
 VERILATOR_FLAGS += -Wall
 # Make waveforms
-VERILATOR_FLAGS += --trace
+#VERILATOR_FLAGS += --trace
 # Check SystemVerilog assertions
-VERILATOR_FLAGS += --assert
+#VERILATOR_FLAGS += --assert
 # Generate coverage analysis
 #VERILATOR_FLAGS += --coverage
 # Run Verilator in debug mode
@@ -65,9 +65,6 @@ endif
 
 run:
 	@echo
-	@echo "-- Verilator tracing example"
-
-	@echo
 	@echo "-- VERILATE ----------------"
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VERILATOR_INPUT)
 
@@ -78,7 +75,7 @@ run:
 # 2. Or, run the make rules Verilator does:
 #	$(MAKE) -j -C obj_dir -f Vtop.mk
 # 3. Or, call a submakefile where we can override the rules ourselves:
-	$(MAKE) -j -C obj_dir -f ../../common/Makefile_obj
+	$(MAKE) -j -C obj_dir -f ../Makefile_obj
 
 	@echo
 	@echo "-- RUN ---------------------"
