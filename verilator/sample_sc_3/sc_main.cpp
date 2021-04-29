@@ -44,12 +44,11 @@ SC_MODULE(driver) {
 
         while(1){
             wait();
-            if(out_data == 0xff)
+            if(out_data == 0x10)
                 break;
         }
 
         sc_stop();
-	cout << "sc_stop(), time = " << sc_time_stamp() << endl;
     }
 };
 
@@ -63,20 +62,36 @@ int sc_main(int argc, char* argv[]) {
 
     ios::sync_with_stdio();
 
-    sc_clock clk{"clk", 10, SC_NS, 0.5, 3, SC_NS, true};
+    sc_set_time_resolution(1, SC_PS);
+    
+    sc_clock clk{"clk", 10, SC_NS, 0.5, 1, SC_NS, true};
 
     sc_signal<bool> reset_l;
     sc_signal<bool> load;
+    sc_signal<uint32_t> inc1, inc2;
     sc_signal<uint32_t> in_data;
     sc_signal<uint32_t> out_data;
+    sc_signal<uint32_t> out_data2;
 
     const std::unique_ptr<Vtop> top{new Vtop{"top"}};
+    const std::unique_ptr<Vtop> top2{new Vtop{"top2"}};
+
+    inc1 = 1;
+    inc2 = 1;
 
     top->clk(clk);
     top->reset_l(reset_l);
     top->load(load);
+    top->inc(inc1);
     top->in_data(in_data);
     top->out_data(out_data);
+
+    top2->clk(clk);
+    top2->reset_l(reset_l);
+    top2->inc(inc2);
+    top2->load(load);
+    top2->in_data(out_data);
+    top2->out_data(out_data2);
 
     const std::unique_ptr<driver> drv{new driver("driver")};
 
@@ -84,17 +99,11 @@ int sc_main(int argc, char* argv[]) {
     drv->reset_l(reset_l);
     drv->load(load);
     drv->in_data(in_data);
-    drv->out_data(out_data);
+    drv->out_data(out_data2);
 
     sc_start();
-    
+
     top->final();
 
-    cout << "done, time = " << sc_time_stamp() << endl;
     return 0;
-}
-
-void sc_stop_for_hdl()
-{
-    sc_stop();
 }
