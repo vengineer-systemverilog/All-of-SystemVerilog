@@ -1,6 +1,6 @@
 #include <memory>
 #include <systemc.h>
-#include "Vmemory.h"
+#include "Vtop.h"
 
 SC_MODULE(bfm) {
   public:
