@@ -3,7 +3,11 @@
 #include "Vtop.h"
 #include "bfm.h"
 
+#ifdef FST
+#include "verilated_fst_sc.h"
+#else
 #include "verilated_vcd_sc.h"
+#endif
 
 int sc_main(int argc, char* argv[]) {
 
@@ -50,6 +54,15 @@ int sc_main(int argc, char* argv[]) {
     Verilated::traceEverOn(true);
     // If verilator was invoked with --trace argument,
     // and if at run time passed the +trace argument, turn on tracing
+#ifdef FST
+    VerilatedFstSc* tfp = NULL;
+    const char* flag = Verilated::commandArgsPlusMatch("trace");
+    if (flag && 0 == strcmp(flag, "+trace")) {
+        tfp = new VerilatedFstSc;
+        top->trace(tfp,99);
+        tfp->open("vlt_dump.fst");
+    }
+#else
     VerilatedVcdSc* tfp = NULL;
     const char* flag = Verilated::commandArgsPlusMatch("trace");
     if (flag && 0 == strcmp(flag, "+trace")) {
@@ -57,15 +70,13 @@ int sc_main(int argc, char* argv[]) {
         top->trace(tfp,99);
         tfp->open("vlt_dump.vcd");
     }
-
+#endif
     sc_start();
     
     top->final();
 
-    if(tfp)
+    if(tfp) {
         tfp->flush();
-
-    if (tfp) {
         tfp->close();
         tfp = NULL;
     }

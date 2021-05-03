@@ -39,7 +39,12 @@ VERILATOR_FLAGS += -Os -x-assign 0
 # Warn abount lint issues; may not want this on less solid designs
 VERILATOR_FLAGS += -Wall
 # Make waveforms
+FST ?= 0
+ifeq ($(FST),1)
+VERILATOR_FLAGS += --trace-fst -CFLAGS -DFST
+else
 VERILATOR_FLAGS += --trace
+endif
 # Check SystemVerilog assertions
 VERILATOR_FLAGS += --assert
 # Generate coverage analysis
