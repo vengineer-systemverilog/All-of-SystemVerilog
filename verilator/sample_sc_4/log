@@ -1,0 +1,15 @@
+
+-- Verilator tracing example
+
+-- VERILATE ----------------
+verilator -CFLAGS -DVL_USER_STOP -sc --exe -Os -x-assign 0 -Wall --trace --assert top.v sc_main.cpp
+
+-- COMPILE -----------------
+make -j -C obj_dir -f ../../common/Makefile_obj
+make[1]: Entering directory '/mnt/c/Users/haray/home/verilator/All-of-SystemVerilog/verilator/sample_sc_4/obj_dir'
+g++  -I.  -MMD -I/usr/local/verilator/v4.200/share/verilator/include -I/usr/local/verilator/v4.200/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=1 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DVL_USER_STOP   -I/usr/local/systemc/2.3.3/include -std=gnu++14 -MMD -MP -DVL_DEBUG=1 -Wno-deprecated -Os -fstrict-aliasing -c -o sc_main.o ../sc_main.cpp
+/usr/bin/perl /usr/local/verilator/v4.200/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtop.cpp Vtop__Trace.cpp Vtop__Slow.cpp Vtop__Syms.cpp Vtop__Trace__Slow.cpp > Vtop__ALL.cpp
+g++  -I.  -MMD -I/usr/local/verilator/v4.200/share/verilator/include -I/usr/local/verilator/v4.200/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=1 -DVM_TRACE=1 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -DVL_USER_STOP   -I/usr/local/systemc/2.3.3/include -std=gnu++14 -MMD -MP -DVL_DEBUG=1 -Wno-deprecated -Os -fstrict-aliasing -c -o Vtop__ALL.o Vtop__ALL.cpp
+make[1]: *** [Vtop.mk:60: sc_main.o] Interrupt
+make[1]: *** [/usr/local/verilator/v4.200/share/verilator/include/verilated.mk:235: Vtop__ALL.o] Interrupt
+make: *** [Makefile:74: run] Interrupt
