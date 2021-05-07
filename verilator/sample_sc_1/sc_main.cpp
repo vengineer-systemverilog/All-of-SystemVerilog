@@ -18,7 +18,7 @@ SC_MODULE(driver) {
     }
 
     sc_in<bool> clk;
-    sc_out<bool> reset_l;
+    sc_in<bool> reset_l;
     sc_in<uint32_t> out_data;
     sc_out<bool> load;
     sc_out<uint32_t> in_data;
@@ -26,15 +26,12 @@ SC_MODULE(driver) {
   private:
     void main(){
 
-        reset_l = 0;
         load = 0;
         in_data = 0;
-        wait();
-        wait();
-        wait();
 
-        reset_l = 1;
-        wait();
+        do {
+	  wait();
+        }  while(!reset_l.read());
         
         load = 1;
         in_data = 2;
@@ -50,6 +47,35 @@ SC_MODULE(driver) {
 
         sc_stop();
 	cout << "sc_stop(), time = " << sc_time_stamp() << endl;
+    }
+};
+
+SC_MODULE(reset) {
+  public:
+
+    SC_CTOR(reset) :
+        clk("clk"), reset_l("reset_l")
+    {
+        SC_THREAD(main);
+        sensitive << clk.pos();
+    }
+
+    sc_in<bool> clk;
+    sc_out<bool> reset_l;
+
+  private:
+    void main(){
+
+        reset_l = 0;
+        for(int i=0 ; i<3 ; i++)
+            wait();
+
+        reset_l = 1;
+
+        while(1){
+            wait();
+
+        }
     }
 };
 
@@ -77,6 +103,11 @@ int sc_main(int argc, char* argv[]) {
     top->load(load);
     top->in_data(in_data);
     top->out_data(out_data);
+
+    const std::unique_ptr<reset> rst{new reset("reset")};
+
+    rst->clk(clk);
+    rst->reset_l(reset_l);
 
     const std::unique_ptr<driver> drv{new driver("driver")};
 
