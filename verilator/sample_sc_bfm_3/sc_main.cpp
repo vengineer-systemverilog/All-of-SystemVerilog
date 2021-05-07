@@ -53,7 +53,10 @@ int sc_main(int argc, char* argv[]) {
     return 0;
 }
 
-void sc_stop_for_hdl()
+#ifdef VL_USER_STOP
+void vl_stop(const char *filename, int linenum, const char *hier) VL_MT_UNSAFE
 {
     sc_stop();
+    cout << "call vl_stop" << endl;
 }
+#endif
