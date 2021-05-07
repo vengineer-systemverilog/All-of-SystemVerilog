@@ -33,7 +33,9 @@ SC_MODULE(driver) {
 	  wait();
         }  while(!reset_l.read());
         
-        load = 1;
+        wait();
+
+	load = 1;
         in_data = 2;
         wait();
 
