@@ -52,18 +52,17 @@ module top
 
     export "DPI-C" function direct_read;
     export "DPI-C" function direct_write;
-    import "DPI-C" context function void sc_stop_for_hdl();
+    export "DPI-C" function direct_write_integer;
 
     function automatic void address_check(input int addr_);
         if((addr_>>2)>ram_size) begin
             $display("write, address range error at %h", addr_);
-            sc_stop_for_hdl();
+            $stop;
         end
 
         if((addr_ & 32'h3) != 32'h0) begin
             $display("write, address boundary error at %h", addr_);
-            sc_stop_for_hdl();
-            
+            $stop;
         end
     endfunction : address_check
     
@@ -78,5 +77,10 @@ module top
         address_check(addr_);
         ram[addr_>>2] = data_;
     endfunction : direct_write
+
+    function void direct_write_integer(input integer addr_, input integer data_);
+        address_check(addr_);
+        ram[addr_>>2] = data_;
+    endfunction : direct_write_integer
 
 endmodule
