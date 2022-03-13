@@ -18,12 +18,12 @@ SC_MODULE(bfm) {
 
     sc_in<bool>      clk;
     sc_out<bool>     reset;
-    sc_out<uint32_t> addr;
+    sc_out<sc_uint<16>> addr;
     sc_out<bool>     cs;
     sc_out<bool>     rw;
-    sc_out<uint32_t> data_out;
+    sc_in<sc_uint<32>>  data_in;
     sc_in<bool>      ready;
-    sc_in<uint32_t>  data_in;
+    sc_out<sc_uint<32>> data_out;
 
   private:
     bool reset_done;
@@ -98,19 +98,19 @@ SC_MODULE(sc_top) {
     sc_signal<bool>     reset;
     sc_signal<bool>     cs;
     sc_signal<bool>     rw;
-    sc_signal<uint32_t> addr;
+    sc_signal<sc_uint<16>> addr;
     sc_signal<bool>     ready;
-    sc_signal<uint32_t> data_in;
-    sc_signal<uint32_t> data_out;
+    sc_signal<sc_uint<32>> data_in;
+    sc_signal<sc_uint<32>> data_out;
 
     Vtop *u_top;
     bfm *u_bfm;
-
-    SC_CTOR(sc_top) :
+    
+    SC_CTOR(sc_top) :     
         clk("clk", 10, SC_NS, 0.5, 5, SC_NS, true),
         reset("reset"), cs("cs"), rw("rw"), addr("addr"), ready("ready"), data_in("data_in"), data_out("data_out") {
 
-        u_top = new Vtop{"top"};
+        u_top = new Vtop{"top", "Vtop", 0, NULL};
 
         u_top->clk(clk);
         u_top->reset(reset);
@@ -138,23 +138,3 @@ SC_MODULE(sc_top) {
         delete u_bfm;
     }
 };
-
-int sc_main(int argc, char* argv[]) {
-
-    if (false && argc && argv) {}
-
-    Verilated::debug(0);
-    Verilated::randReset(2);
-    Verilated::commandArgs(argc, argv);
-
-    ios::sync_with_stdio();
-
-    const std::unique_ptr<sc_top> u_sc_top{new sc_top{"sc_top"}};
-
-    sc_start();
-    
-    u_sc_top->u_top->final();
-
-    cout << "done, time = " << sc_time_stamp() << endl;
-    return 0;
-}
