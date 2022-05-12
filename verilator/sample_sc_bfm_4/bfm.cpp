@@ -8,8 +8,8 @@ using namespace sc_core;
 void set_bfm(bfm* bfm); // from bfm_api.cpp
 
 bfm::bfm(sc_module_name name) : sc_module(name),
-    clk("clk"), reset("reset"), addr("addr"), cs("cs"), rw("rw"), data_in("data_in"), 
-    ready("ready"), data_out("data_out"), reset_done(false)
+    clk("clk"), reset("reset"), cs("cs"), rw("rw"), ready("ready"),
+    addr("addr"), data_in("data_in"), data_out("data_out"), reset_done(false)
 {
     SC_THREAD(reset_task);
     sensitive << clk.pos();

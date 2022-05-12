@@ -1,8 +1,4 @@
-`ifdef VERILATOR
 module top
-`else
-module Vtop
-`endif
 (
     input  logic        clk,
     input  logic        reset,
@@ -18,9 +14,8 @@ module Vtop
     );
 
     localparam ram_size = (17'h10000>>2);
-
     /* verilator lint_off WIDTH */
-    logic [31:0] ram[ram_size]; 
+    logic [31:0] ram[ram_size];
     /* verilator lint_on WIDTH */
 
     enum {STATE_IDLE, STATE_RUN, STATE_DONE} state;

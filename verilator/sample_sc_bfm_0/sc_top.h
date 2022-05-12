@@ -2,6 +2,12 @@
 #include <systemc.h>
 #include "Vtop.h"
 
+#ifdef VERILATOR
+#define UINT32(n)	uint32_t
+#else
+#define UINT32(n)	sc_uint<n>
+#endif
+
 SC_MODULE(bfm) {
   public:
 
@@ -18,12 +24,12 @@ SC_MODULE(bfm) {
 
     sc_in<bool>      clk;
     sc_out<bool>     reset;
-    sc_out<sc_uint<16>> addr;
     sc_out<bool>     cs;
     sc_out<bool>     rw;
-    sc_in<sc_uint<32>>  data_in;
     sc_in<bool>      ready;
-    sc_out<sc_uint<32>> data_out;
+    sc_out<UINT32(16)> addr;
+    sc_out<UINT32(32)> data_out;
+    sc_in<UINT32(32)>  data_in;
 
   private:
     bool reset_done;
@@ -98,10 +104,10 @@ SC_MODULE(sc_top) {
     sc_signal<bool>     reset;
     sc_signal<bool>     cs;
     sc_signal<bool>     rw;
-    sc_signal<sc_uint<16>> addr;
     sc_signal<bool>     ready;
-    sc_signal<sc_uint<32>> data_in;
-    sc_signal<sc_uint<32>> data_out;
+    sc_signal<UINT32(16)> addr;
+    sc_signal<UINT32(32)> data_in;
+    sc_signal<UINT32(32)> data_out;
 
     Vtop *u_top;
     bfm *u_bfm;
@@ -110,7 +116,11 @@ SC_MODULE(sc_top) {
         clk("clk", 10, SC_NS, 0.5, 5, SC_NS, true),
         reset("reset"), cs("cs"), rw("rw"), addr("addr"), ready("ready"), data_in("data_in"), data_out("data_out") {
 
+#ifdef VERILATOR
+        u_top = new Vtop{"top"};
+#else
         u_top = new Vtop{"top", "Vtop", 0, NULL};
+#endif
 
         u_top->clk(clk);
         u_top->reset(reset);
@@ -134,6 +144,9 @@ SC_MODULE(sc_top) {
     }
 
     ~sc_top() {
+#ifdef VERILATOR
+        u_top->final();
+#endif
         delete u_top;
         delete u_bfm;
     }
