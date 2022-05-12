@@ -1,0 +1,8 @@
+
+all:
+	rm -rf work ; vsim -c -do run_1.do
+	rm -rf work ; vsim -c -do run_2.do
+	rm -rf work ; vsim -c -do run_3.do
+
+clean:
+	rm -rf work transcript Vtop.h

@@ -29,7 +29,7 @@ export VERILATOR_ROOT
 VERILATOR = $(VERILATOR_ROOT)/bin/verilator
 endif
 
-VERILATOR_FLAGS =
+VERILATOR_FLAGS = -CFLAGS -DVERILATOR
 # Generate SystemC in executable form
 VERILATOR_FLAGS += -sc --exe
 # Generate makefile dependencies (not shown as complicates the Makefile)
@@ -64,6 +64,7 @@ default: nosc
 endif
 
 run:
+	rm -rf Vtop.h
 	@echo
 	@echo "-- Verilator tracing example"
 

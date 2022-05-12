@@ -1,6 +1,7 @@
 
 all:
-	vsim -c -do run.do
+	vsim -c -do run_1.do
+	vsim -c -do run_2.do
 
 clean:
 	rm -rf work transcript Vtop.h

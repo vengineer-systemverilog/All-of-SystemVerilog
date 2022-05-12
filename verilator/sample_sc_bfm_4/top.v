@@ -1,4 +1,8 @@
+`ifdef VERILATOR
 module top
+`else
+module Vtop
+`endif
 (
     input  logic        clk,
     input  logic        reset,
@@ -14,6 +18,10 @@ module top
     );
 
     localparam ram_size = (17'h10000>>2);
+
+    /* verilator lint_off WIDTH */
+    logic [31:0] ram[ram_size]; 
+    /* verilator lint_on WIDTH */
 
     enum {STATE_IDLE, STATE_RUN, STATE_DONE} state;
 
@@ -45,10 +53,6 @@ module top
             ready    <= 1'b0;
         end
     end
-
-    /* verilator lint_off WIDTH */
-    logic [31:0] ram[ram_size]; 
-    /* verilator lint_on WIDTH */
 
     export "DPI-C" function direct_read;
     export "DPI-C" function direct_write;
